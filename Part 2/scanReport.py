@@ -13,6 +13,7 @@ class CIDR():
         self.max_ip = int()
         self.subnets = list()
         self.ips_within = list()
+        self.counter = 0
         for ip in ip_dot:
             range_of_ips = ipaddress.IPv4Network(ip)
             self.min_ip = min(self.min_ip, ip2long(str(range_of_ips[0])))
@@ -20,6 +21,7 @@ class CIDR():
     def check_subnet(self, network):
         if self.min_ip <= network.min_ip and self.max_ip >= network.max_ip:
             self.subnets.append(network)        # network is a subnet of self
+            self.counter += 1
     def check_ip_in_range(self, ip):
         longform = ip2long(ip)
         if longform in range(self.min_ip, self.max_ip):
@@ -30,7 +32,7 @@ class CIDR():
         s += "IPv4 Range: " + str(ip_range) + '\n'
         nets = [str(self.ip_dot) for subnet in self.subnets]
         s += "Subnets: " + str(nets) + '\n'
-        s += "IPs in network: " + str(self.ips_within) + '\n'
+        s += "IPs in network: " + str(self.ips_within) + ": " + str(self.counter) + '\n'
         return s
 def ip2long(ip):
     """

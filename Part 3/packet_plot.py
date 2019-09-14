@@ -29,6 +29,7 @@ for i in range(1, len(sys.argv)):
 
 
 ffx_avg_lens = [packet_digest.find_avg_len(key, web_digests[0]) for key in urls]
+print("ffx "+ key + "; " + ffx_avg_lens)
 ffx_avg_sents = [packet_digest.find_avg_sent(key, web_digests[0]) for key in urls]
 
 tor_avg_lens = [packet_digest.find_avg_len(key, web_digests[1]) for key in urls]
@@ -43,7 +44,7 @@ index = np.arange(len(urls))
 bar_width = 0.3
 opacity = 0.8
 
-rects1 = plt.bar(index, ffx_avg_lens, bar_width,
+rects1 = plt.bar(index, bar_width, ffx_avg_lens,
 alpha=opacity,
 color='b',
 label='ffx')

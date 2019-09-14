@@ -19,6 +19,7 @@ def find_avg_len(key, website_pdigest):
 def find_avg_sent(key, website_pdigest):
     if key in website_pdigest:
         sent = sum([info.p_sent for info in website_pdigest[key]])
+        # print(website_pdigest + " " + key +" : " + sent / len(website_pdigest[key]))
         return sent / len(website_pdigest[key])
 def digest_file(filename):
     website_pdigest = dict()
